@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerFit Academia</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Cabeçalho */
+        header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b00;
+        }
+        
+        /* Menu Hamburguer */
+        .menu-toggle {
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        nav {
+            position: fixed;
+            top: 60px;
+            right: -100%;
+            background-color: #1a1a1a;
+            width: 70%;
+            height: calc(100vh - 60px);
+            transition: right 0.3s ease;
+            padding: 1rem;
+        }
+        
+        nav.active {
+            right: 0;
+        }
+        
+        nav ul {
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 1.5rem 0;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #ff6b00;
+        }
+        
+        /* Conteúdo Principal */
+        main {
+            margin-top: 70px;
+            padding: 1rem;
+        }
+        
+        section {
+            padding: 2rem 1rem;
+            margin-bottom: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #ff6b00;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        /* Banner Hero */
+        .hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://placehold.co/600x400/1a1a1a/white?text=Academia+PowerFit') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ff6b00;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e55d00;
+        }
+        
+        /* Planos */
+        .planos {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .plano {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        
+        .plano h3 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+        
+        .preco {
+            font-size: 1.8rem;
+            color: #ff6b00;
+            margin-bottom: 1rem;
+        }
+        
+        .plano ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .plano ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* Galeria */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .galeria img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        /* Formulário */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+        
+        .footer-info {
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+        
+        /* Media Query para tablets (opcional) */
+        @media (min-width: 768px) {
+            .planos {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .plano {
+                flex: 1 0 calc(50% - 1rem);
+            }
+            
+            .galeria {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">PowerFit</div>
+            <div class="menu-toggle">☰</div>
+        </div>
+        <nav id="nav">
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <div class="hero">
+                <h1>Transforme seu corpo, transforme sua vida</h1>
+                <p>Na PowerFit, oferecemos o melhor em equipamentos e treinamento personalizado</p>
+                <a href="#planos" class="btn">Conheça nossos planos</a>
+            </div>
+        </section>
+
+        <section id="sobre">
+            <h2>Sobre Nós</h2>
+            <p>Somos uma academia focada em resultados, com profissionais qualificados e equipamentos de última geração. Nossa missão é ajudar você a alcançar seus objetivos de forma saudável e eficiente.</p>
+            <p> Horário de funcionamento: Segunda a Sexta, 6h às 23h | Sábados, 8h às 20h | Domingos, 9h às 16h</p>
+        </section>
+
+        <section id="planos">
+            <h2>Nossos Planos</h2>
+            <div class="planos">
+                <div class="plano">
+                    <h3>Plano Básico</h3>
+                    <div class="preco">R$ 75,90/mês</div>
+                    <ul>
+                        <li>Acesso à academia</li>
+                        <li>Avaliação física</li>
+                        <li>Grátis: Estacionamento</li>
+                    </ul>
+                    <a href="#contato" class="btn">Assinar agora</a>
+                </div>
+                
+                <div class="plano">
+                    <h3>Plano Premium</h3>
+                    <div class="preco">R$ 119,90/mês</div>
+                    <ul>
+                        <li>Acesso à academia</li>
+                        <li>Avaliação física</li>
+                        <li>Acesso a todas as aulas</li>
+                        <li>Grátis: Estacionamento e locker</li>
+                    </ul>
+                    <a href="#contato" class="btn">Assinar agora</a>
+                </div>
+                
+                <div class="plano">
+                    <h3>Plano VIP</h3>
+                    <div class="preco">R$ 200,90/mês</div>
+                    <ul>
+                        <li>Todos os benefícios Premium</li>
+                        <li>Personal trainer 2x na semana</li>
+                        <li>Massagem 1x por semana</li>
+                        <li>Grátis: Área de relaxamento</li>
+                    </ul>
+                    <a href="#contato" class="btn">Assinar agora</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeria">
+            <h2>Nossa Estrutura</h2>
+            <div class="galeria">
+                <img src="https://placehold.co/300x200/1a1a1a/white?text=Área+de+Musculação" alt="Área de Musculação">
+                <img src="https://placehold.co/300x200/1a1a1a/white?text=Área+Cardio" alt="Área Cardiovascular">
+                <img src="https://placehold.co/300x200/1a1a1a/white?text=Aulas+em+Grupo" alt="Aulas em Grupo">
+                <img src="https://placehold.co/300x200/1a1a1a/white?text=Área+Funcional" alt="Área Funcional">
+                <img src="https://placehold.co/300x200/1a1a1a/white?text=Vestiários" alt="Vestiários">
+                <img src="https://placehold.co/300x200/1a1a1a/white?text=Área+de+Descanso" alt="Área de Descanso">
+            </div>
+        </section>
+
+        <section id="contato">
+            <h2>Entre em Contato</h2>
+            <form>
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" placeholder="Seu nome completo" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="seu@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" placeholder="(41) 99999-9999">
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" placeholder="Como podemos ajudar?" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Enviar Mensagem</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <p>PowerFit Academia</p>
+            <p>Rua da agua, 123 - Centro</p>
+            <p>Curitiba- pr</p>
+            <p>Telefone: (41) 93456-7890</p>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" aria-label="Instagram">📱</a>
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="WhatsApp">💬</a>
+        </div>
+        
+        <p>&copy; 2023 PowerFit Academia. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Menu mobile toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.getElementById('nav');
+        
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Fechar menu ao clicar em um link
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+        
+        // Form submission (básico)
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Obrigado pelo seu interesse! Entraremos em contato em breve.');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
